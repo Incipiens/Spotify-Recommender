@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Recommender</title>
+  <!-- Materialize CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding: 20px;
+    }
+    .track-list {
+      margin-top: 20px;
+    }
+    .track-embed {
+      margin-top: 20px;
+    }
+    .playlist-link {
+      margin-top: 30px;
+    }
+    /* Ensure all cards have the same height */
+    .card {
+      height: 220px;
+    }
+    .card-content {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .iframe-container {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h3 class="center-align">Your Top Tracks</h3>
+    <div class="row track-list">
+      {% for track in top_tracks %}
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">{{ track.name }} by {{ track.artist }}</span>
+            <div class="iframe-container">
+              <iframe src="{{ track.embed_url }}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="{{ track.spotify_url }}" target="_blank">Open on Spotify</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <h3 class="center-align">Recommended Tracks</h3>
+    <div class="row track-list">
+      {% for track in recommended_tracks %}
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">{{ track.name }} by {{ track.artist }}</span>
+            <div class="iframe-container">
+              <iframe src="{{ track.embed_url }}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="{{ track.spotify_url }}" target="_blank">Open on Spotify</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="center-align playlist-link">
+      <a href="{{ playlist_url }}" class="btn-large waves-effect waves-light" target="_blank">View Playlist on Spotify</a>
+    </div>
+  </div>
+
+  <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
