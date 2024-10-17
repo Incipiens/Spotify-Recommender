@@ -9,7 +9,7 @@ To execute this project you'll need to install the dependencies listed at the to
 Then run:
 
 ```bash
-  python spotifyrecommender.py
+  python spotifyrecommend.py
 ```
 
 ## Documentation
